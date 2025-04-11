@@ -33,10 +33,11 @@ def run_attendance_script():
         )
         print("✅ Script output:", result.stdout)
         print("❌ Script error (if any):", result.stderr)
+
+        return jsonify({"status": "success", "output": result.stdout})
     except Exception as e:
         print("❌ Error running script:", e)
-
-    return redirect(url_for('main.index'))
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 @main.route('/login')
 def login():

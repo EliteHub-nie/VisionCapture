@@ -121,6 +121,7 @@ window.startAnalysis = async () => {
   const date = new Date().toISOString().split("T")[0];
 
   try {
+    // Save analysis log to Firestore
     await addDoc(collection(db, "analysisLogs"), {
       teacherId: currentUser.uid,
       course,
@@ -130,12 +131,25 @@ window.startAnalysis = async () => {
       date,
       timestamp: serverTimestamp()
     });
-    alert("Analysis started and saved!");
+
+    alert("Analysis log saved! Now running attendance script...");
+
+    // 🟡 Call Flask backend to run the attendance script
+    const response = await fetch("/run-attendance", {
+      method: "POST"
+    });
+
+    if (response.ok) {
+      alert("Attendance script triggered successfully!");
+    } else {
+      alert("Failed to run attendance script.");
+    }
   } catch (error) {
-    console.error("Error saving analysis:", error);
-    alert("Failed to save analysis.");
+    console.error("Error starting analysis:", error);
+    alert("Something went wrong while starting analysis.");
   }
 };
+
 
 // ---------------------- FETCH ANALYSIS ----------------------
 analysisDateInput?.addEventListener("change", (e) => {

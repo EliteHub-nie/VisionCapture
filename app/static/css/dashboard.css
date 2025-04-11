@@ -1,63 +1,56 @@
+/* Dashboard styles */
 body {
-    font-family: "Segoe UI", sans-serif;
-    background-color: #f5f7fa;
-    margin: 0;
-    padding: 20px;
-    color: #333;
-  }
-  
-  h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-  }
-  
-  h3, h4 {
-    margin-top: 20px;
-    color: #1f2937;
-  }
-  
-  .hidden {
-    display: none;
-  }
-  
-  button {
-    background-color: #2563eb;
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 6px;
-    margin: 10px 5px 10px 0;
-    cursor: pointer;
-    font-size: 15px;
-    transition: background-color 0.2s ease;
-  }
-  
-  button:hover {
-    background-color: #1d4ed8;
-  }
-  
-  label, select, input {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 14px;
-  }
-  
-  input[type="text"],
-  input[type="number"],
-  input[type="date"],
-  select {
-    width: 200px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-  }
-  
-  #data-display, #analysis-result {
-    background-color: #fff;
-    padding: 15px 20px;
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    max-width: 600px;
-  }
-  
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f6fa;
+}
+
+h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+}
+
+.hidden {
+  display: none;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+select, input[type="text"], input[type="number"], input[type="date"] {
+  padding: 10px;
+  width: 250px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 5px;
+  margin: 8px 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+#data-display,
+#attendanceContainer,
+#analysis-result {
+  margin-top: 20px;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}

@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Dashboard</title>
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block head %}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
-  <script type="module" src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
-</head>
-<body>
+{% endblock %}
+{% block content %}
   <h1 id="welcome-text">Welcome</h1>
 
   <div id="teacher-options" class="hidden">
@@ -37,6 +35,8 @@
       </select>
     </label>
     <button onclick="startAnalysis()">Start Analysis</button>
+    <button id="fetchAttendanceBtn">Fetch Attendance</button>
+    <div id="attendanceContainer"></div>
   </div>
 
   <div id="check-analysis-section" class="hidden">
@@ -47,5 +47,8 @@
 
   <div id="data-display"></div>
   <button onclick="logout()">Logout</button>
-</body>
-</html>
+{% endblock %}
+{% block scripts %}
+  <script type="module" src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+  <script type="module" src="{{ url_for('static', filename='js/attendance.js') }}"></script>
+{% endblock %}

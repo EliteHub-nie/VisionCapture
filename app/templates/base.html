@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Smart Classroom{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  {% block head %}{% endblock %}
+</head>
+
+<body>
+  <!-- Header / Navbar -->
+  <header>
+    <div class="navbar">
+      <a href="/" class="navbar-logo">
+        <img src="{{ url_for('static', filename='images/university-logo.png') }}" alt="Logo" />
+        <h3>The National Institute of Enginnering, Mysuru</h3>
+      </a>
+      <nav class="navbar-nav">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <span id="auth-placeholder">
+          <!-- This will be replaced dynamically (Login/Logout) -->
+          <a href="/login">Login</a>
+        </span>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main page content -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 Smart Classroom | <a href="#">Privacy Policy</a> | <a href="#">Contact</a></p>
+    </div>
+  </footer>
+
+  {% block scripts %}{% endblock %}
+
+  <script type="module">
+    // Example: dynamically adjust header based on auth state.
+    // In your real app you would import Firebase and set this accordingly.
+    // For now, this is a simple demo showing "Login" when no user is logged in.
+    const authPlaceholder = document.getElementById("auth-placeholder");
+    // You can later update this using Firebase Auth state.
+    authPlaceholder.innerHTML = '<a href="/login">Login</a>';
+  </script>
+</body>
+
+</html>
