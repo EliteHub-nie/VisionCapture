@@ -68,7 +68,7 @@ function renderProfile(data) {
   if (!profileBox) return;
 
   const {
-    photoURL = "https://via.placeholder.com/120",
+    photoURL = "https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg",
     name = "Unknown",
     qualification = "Not Provided",
     description = "No description"
