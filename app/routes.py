@@ -9,17 +9,7 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    attendance_data = []
-
-    csv_path = os.path.join(os.getcwd(), 'Attendance.csv')
-    if os.path.exists(csv_path):
-        with open(csv_path, 'r') as file:
-            reader = csv.reader(file)
-            next(reader)  # Skip header
-            for row in reader:
-                attendance_data.append(row)
-
-    return render_template('index.html', attendance=attendance_data)
+    return redirect(url_for('main.dashboard'))
 
 @main.route('/run-attendance', methods=['POST'])
 def run_attendance_script():

@@ -2,7 +2,7 @@
 *{
   margin: 0;
   padding: 0;
-
+  box-sizing: border-box;
 }
 body {
     font-family: 'Segoe UI', sans-serif;
@@ -17,7 +17,7 @@ body {
     align-items: center;
     background-color: #242466;
     color: whitesmoke;
-    padding:  10px 15px;
+    padding:  1rem 1rem;
   }
   .navbar > a{
     color: whitesmoke;
@@ -55,11 +55,6 @@ body {
   
   .navbar-nav a:hover {
     text-decoration: underline;
-  }
-  
-  /* Main content */
-  main {
-    padding: 2rem;
   }
   
   /* Table styling (for attendance display) */
@@ -109,16 +104,18 @@ body {
   form button:hover {
     background-color: #2980b9;
   }
+
+  main{
+    min-height: 75vh;
+  }
   
   /* Footer styling */
   footer {
     background-color: #242466;
     color: #ccc;
     text-align: center;
-    padding: 5px;
-    position: absolute;
+    padding: 1rem;
     width: 100%;
-    bottom: 0;
   }
   
   footer a {

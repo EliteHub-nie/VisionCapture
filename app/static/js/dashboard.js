@@ -14,6 +14,7 @@ const startAttendanceForm = document.getElementById("start-attendance-form");
 const checkAnalysisSection = document.getElementById("check-analysis-section");
 const analysisResult = document.getElementById("analysis-result");
 const analysisDateInput = document.getElementById("analysis-date");
+const profileBox = document.querySelector(".profile");
 
 let currentUser = null;
 
@@ -37,7 +38,8 @@ onAuthStateChanged(auth, async (user) => {
   const userData = userDocSnap.data();
   const { name, role } = userData;
 
-  welcomeText.textContent = `Welcome ${name}${role === "teacher" ? " Sir" : ""}`;
+  welcomeText.textContent = `Welcome Mr. ${name}${role === "teacher" ? " " : ""}`;
+  renderProfile(userData);
 
   if (role === "student") {
     const studentDataDoc = await getDoc(doc(db, "studentsData", uid));
@@ -61,6 +63,25 @@ onAuthStateChanged(auth, async (user) => {
   }
 });
 
+// ---------------------- Render Profile ----------------------
+function renderProfile(data) {
+  if (!profileBox) return;
+
+  const {
+    photoURL = "https://via.placeholder.com/120",
+    name = "Unknown",
+    qualification = "Not Provided",
+    description = "No description"
+  } = data;
+
+  profileBox.innerHTML = `
+    <img src="${photoURL}" alt="Profile Photo" />
+    <h2>${name}</h2>
+    <p><strong>Qualification:</strong> ${qualification}</p>
+    <p>${description}</p>
+  `;
+}
+
 // ---------------------- ADMIN DASHBOARD ----------------------
 async function showAdminDashboard() {
   dataDisplay.innerHTML = `<h3>All Teachers:</h3>`;
@@ -72,7 +93,7 @@ async function showAdminDashboard() {
   } else {
     teacherSnapshot.forEach(docSnap => {
       const t = docSnap.data();
-      dataDisplay.innerHTML += `<p><strong>${t.name} Sir</strong> (Teacher)</p>`;
+      dataDisplay.innerHTML += `<p><strong>Mr. ${t.name}</strong> (Teacher)</p>`;
     });
   }
 
@@ -121,7 +142,6 @@ window.startAnalysis = async () => {
   const date = new Date().toISOString().split("T")[0];
 
   try {
-    // Save analysis log to Firestore
     await addDoc(collection(db, "analysisLogs"), {
       teacherId: currentUser.uid,
       course,
@@ -134,7 +154,6 @@ window.startAnalysis = async () => {
 
     alert("Analysis log saved! Now running attendance script...");
 
-    // 🟡 Call Flask backend to run the attendance script
     const response = await fetch("/run-attendance", {
       method: "POST"
     });
@@ -149,7 +168,6 @@ window.startAnalysis = async () => {
     alert("Something went wrong while starting analysis.");
   }
 };
-
 
 // ---------------------- FETCH ANALYSIS ----------------------
 analysisDateInput?.addEventListener("change", (e) => {

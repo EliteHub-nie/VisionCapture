@@ -1,16 +1,39 @@
 {% extends "base.html" %}
 {% block title %}Login - Smart Classroom{% endblock %}
 {% block head %}
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 {% endblock %}
 {% block content %}
-  <form id="login-form">
-    <h2>Login</h2>
-    <input type="email" id="email" placeholder="Email" required>
-    <input type="password" id="password" placeholder="Password" required>
-    <button type="submit">Login</button>
-  </form>
+<div class="container">
+
+  <div class="log-cont">
+    <h4>Odd semester login</h4>
+    <form id="login-form">
+      <h2>Login</h2>
+      <section>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+      </section>
+      <div>
+        <a href="#">Forgot Password?</a>
+        <button type="submit">Login</button>
+      </div>
+    </form>
+  </div>
+  <div class="info">
+    <div class="text">
+      <h2>Welcome to NIE</h2>
+      <span>The National Institute of Engineering (NIE) is a grant-in-aid institution and approved by the All India Council for Technical Education (AICTE), New Delhi.</span>
+    </div>
+    <div class="notice-board">
+      <h2>Notice Board</h2>
+      <div class="message">
+        <span>Welcome to the preview of the new mobile friendly parent portal</span>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 {% block scripts %}
-  <script type="module" src="{{ url_for('static', filename='js/login.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/login.js') }}"></script>
 {% endblock %}
